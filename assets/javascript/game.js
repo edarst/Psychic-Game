@@ -1,27 +1,63 @@
-// Create an array numbers 1-10
+// Create an array letters
 
-var numbers = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9];
+var computerChoices = ["a", "b", "c", "d", "e", "f", "g", "h", "i", "j", "k", "l", "m", "n", "o", "p", "q", "r", "s", "t", "u", "v", "w", "x", "y", "z"];
 
 // Set variables for win, loss, etc.
 
-var win = document.getElementByID("result-win")
-var loss = document.getElementByID("result-loss")
-var guessLeft = document.getElementByID("guesses-left")
-var guessMade = document.getElementByID("guesses-made")
-tieCount = 0;
-winCount = 0;
-lossCount = 0;
+var wins = 0;
+var losses = 0;
+var ties = 0;
+var guessLeft = 9;
+var userGuess = [];
+var computerGuess;
 
-// function for computer to pick one number at random from the array
+//When user presses a key fror 0-9 on their keyboard, this runs
 
-// user can loop through array 10 times, at which point game is over
+document.onkeyup = function(event) {
 
-// letters that the user has guessed are displayed in span ID under guesses made
+	var userGuess = event.key;
+	var computerGuess = computerChoices[Math.floor(Math.random() * computerChoices.length)];
 
-// function for when on key press event, user key is compared to computer's guess
+//FUNCTION TO BEGIN GAME ON INITAL KEY PRESS
 
-// if the same, user win ++i
+// logs key press
 
-//if not the same, loss ++1
+	console.log(userGuess);
 
-//reset once game is over
+	if (userGuess === computerGuess) {
+
+		wins++;
+		console.log("Wins: " + wins);
+		//ADD CHARACTER GUESSED TO USERGUESS
+
+	}
+
+	else if (userGuess !== computerGuess) {
+
+		losses++;
+		//LOWER GUESSLEFT BY 1
+		console.log("Losses: " + losses);
+		//ADD CHARACTER GUESSED TO USERGUESS
+
+	else if (userGuess == computerGuess) {
+
+		ties++;
+		console.log("Ties: " + ties);
+		//ADD CHARACTER GUESSED TO USERGUESS
+	}
+
+	};
+
+//reset the game once the number of guesses reaches 9
+
+function resetGame() {
+
+	guessLeft = 9;
+	userGuess = [];
+	var computerGuess = computerChoices[Math.floor(Math.random() * computerChoices.length)];
+
+};
+
+// ID HTML to update with user-facing wins, losses, and ties
+
+document.querySelector("#game").innerHTML = html;
